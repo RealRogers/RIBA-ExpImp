@@ -1,12 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #0B132B;
-  --color-deep: #0F172A;
-  --color-card: #111C3A;
-  --color-brand: #F97316;
-  --color-brand-dark: #EA580C;
-  --font-serif: "Fraunces", Georgia, serif;
+  --color-ink: #0B2D4A;
+  --color-deep: #0A2438;
+  --color-card: #FFFFFF;
+  --color-brand: #F59E0B;
+  --color-brand-dark: #D97706;
+  --color-mist: #F1F5F9;
+  --color-line: #E2E8F0;
+  --font-serif: "Playfair Display", Georgia, serif;
 }
 
 html {
@@ -19,8 +21,8 @@ section[id] {
 }
 
 body {
-  background: #0B132B;
-  color: #cbd5e1;
+  background: #FFFFFF;
+  color: #334155;
 }
 
 :root {
@@ -40,16 +42,17 @@ body {
 }
 
 .cta {
-  background: #F97316;
-  color: #fff;
+  background: #F59E0B;
+  color: #0B2D4A;
+  font-weight: 700;
 }
 
 .cta:hover {
-  background: #EA580C;
+  background: #D97706;
 }
 
 .ghost {
-  border: 1px solid rgba(255, 255, 255, .35);
+  border: 1px solid rgba(255, 255, 255, .4);
   color: #fff;
 }
 
@@ -57,28 +60,49 @@ body {
   background: rgba(255, 255, 255, .1);
 }
 
+.ghostl {
+  border: 1px solid #CBD5E1;
+  color: #0B2D4A;
+}
+
+.ghostl:hover {
+  background: #F1F5F9;
+}
+
 .chip {
-  border: 1px solid rgba(255, 255, 255, .2);
+  border: 1px solid #CBD5E1;
   border-radius: .5rem;
   padding: .5rem 1rem;
   font-size: .875rem;
   font-weight: 500;
-  color: #e2e8f0;
+  color: #334155;
+  background: #FFFFFF;
 }
 
 .chip.on {
-  background: #F97316;
-  color: #fff;
-  border-color: #F97316;
+  background: #F59E0B;
+  color: #0B2D4A;
+  border-color: #F59E0B;
+  font-weight: 700;
 }
 
 .inp {
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, .2);
+  border: 1px solid #CBD5E1;
   border-radius: .5rem;
   padding: .5rem .75rem;
-  background: #0B132B;
-  color: #fff;
+  background: #FFFFFF;
+  color: #0F172A;
+}
+
+.inp::placeholder {
+  color: #94A3B8;
+}
+
+.inp:focus {
+  outline: 2px solid #F59E0B;
+  outline-offset: 1px;
+  border-color: #F59E0B;
 }
 
 .hide {
@@ -86,10 +110,9 @@ body {
 }
 
 .h {
-  font-family: Fraunces, Georgia, serif;
+  font-family: "Playfair Display", Georgia, serif;
   font-weight: 700;
   letter-spacing: -.02em;
-  color: #fff;
 }
 
 .kick {
@@ -97,20 +120,21 @@ body {
   letter-spacing: .18em;
   text-transform: uppercase;
   font-weight: 700;
-  color: #FB923C;
 }
 
 .box {
-  background: #111C3A;
-  border: 1px solid rgba(255, 255, 255, .08);
-  border-radius: 1.25rem;
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 1rem;
   padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(11, 45, 74, .06);
   transition: .25s;
 }
 
 .box:hover {
   transform: translateY(-3px);
-  border-color: rgba(249, 115, 22, .5);
+  border-color: rgba(245, 158, 11, .6);
+  box-shadow: 0 10px 24px rgba(11, 45, 74, .1);
 }
 
 .dash {

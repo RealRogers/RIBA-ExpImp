@@ -3,7 +3,7 @@
 // TODO: reemplazar por la URL real cuando exista número, ej.
 // `https://wa.me/5215512345678?text=${encodeURIComponent('Hola, quiero cotizar una importación')}`
 export const whatsappUrl = '#';
-export const wechatId = 'sinomex_cn';
+export const wechatId = 'riba_cn';
 export const phone = '+52 55 0000 0000';
 
 export interface Machine {
@@ -34,6 +34,32 @@ export const exportServices: string[] = [
   'Enlace comercial en ferias asiáticas',
   'Flete de exportación',
 ];
+
+// Placeholders a confirmar con datos reales de la empresa.
+export interface Stat {
+  value: string;
+  label: string;
+}
+
+export const stats: Stat[] = [
+  { value: '+500', label: 'contenedores manejados' },
+  { value: '+120', label: 'clientes industriales' },
+  { value: '+10', label: 'años de experiencia' },
+];
+
+// Fotos de secciones. Si el archivo no existe en /public, la tarjeta muestra el fallback navy.
+export const heroImage = '/images/hero-port.webp';
+
+export interface ServiceCard {
+  image: string;
+  alt: string;
+}
+
+export const serviceImages: Record<'import' | 'export' | 'machinery', ServiceCard> = {
+  import: { image: '/images/services/importacion.webp', alt: 'Buque portacontenedores en puerto de origen' },
+  export: { image: '/images/services/exportacion.webp', alt: 'Carga aérea y marítima de exportación' },
+  machinery: { image: '/images/services/maquinaria.webp', alt: 'Maquinaria industrial en planta' },
+};
 
 export interface FxRate {
   pair: string;

@@ -1,11 +1,14 @@
 ---
-import HeroMap from './HeroMap.astro';
+import { heroImage } from '../../data/content';
 ---
-<section class="py-14 md:py-20"><div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
-<div><p class="kick">Corredor China ⇄ México</p>
-<h1 class="h mt-4 text-4xl md:text-6xl leading-[1.05]">Su maquinaria, de la fábrica en China a su bodega, sin sorpresas.</h1>
-<p class="mt-5 text-lg max-w-xl">Seguridad aduanal, inspección en fábrica y entrega puerta a puerta (DDP). Sin sorpresas arancelarias.</p>
-<div class="mt-8 flex flex-col sm:flex-row gap-3"><a href="#importacion" class="btn cta">Quiero Importar de China →</a><a href="#exportacion" class="btn ghost">Quiero Exportar a China →</a></div>
-<div class="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-white"><span>+500 Contenedores</span><span>Padrón de Importadores Activo</span><span>Inspección In-Situ en China</span></div></div>
-<HeroMap/>
-</div></section>
+<section class="relative overflow-hidden bg-deep">
+<div class="absolute inset-0 bg-[linear-gradient(130deg,#0A2438_20%,#0B2D4A_65%)]"></div>
+<img src={heroImage} alt="" loading="eager" class="absolute inset-0 w-full h-full object-cover" onerror="this.remove()"/>
+<div class="absolute inset-0 bg-[linear-gradient(100deg,rgba(10,36,56,.95)_25%,rgba(11,45,74,.75)_55%,rgba(11,45,74,.35))]"></div>
+<div class="relative max-w-6xl mx-auto px-4 py-20 md:py-32"><div class="max-w-2xl">
+<p class="kick text-amber-400">Corredor China ⇄ México</p>
+<h1 class="h mt-4 text-4xl md:text-6xl leading-[1.05] text-white">Su maquinaria, de la fábrica en China a su bodega, sin sorpresas.</h1>
+<p class="mt-5 text-lg md:text-xl text-slate-200">Seguridad aduanal, inspección en fábrica y entrega puerta a puerta (DDP). Sin sorpresas arancelarias.</p>
+<div class="mt-8 flex flex-col sm:flex-row gap-3"><a href="#importacion" class="btn cta">Importar de China</a><a href="#exportacion" class="btn ghost">Exportar a China</a></div>
+<div class="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-slate-200"><span>+500 Contenedores</span><span class="text-amber-400/50 hidden sm:inline">·</span><span>Padrón de Importadores Activo</span><span class="text-amber-400/50 hidden sm:inline">·</span><span>Inspección In-Situ en China</span></div>
+</div></div></section>

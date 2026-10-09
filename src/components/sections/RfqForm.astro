@@ -1,19 +1,19 @@
 ---
 import { rfqOptions } from '../../data/content';
 ---
-<section id="cotizar" class="py-16 bg-deep"><div class="max-w-6xl mx-auto px-4"><p class="kick">Cotizador</p><h2 class="h mt-2 text-3xl md:text-4xl">Cotización Rápida (RFQ)</h2><p class="mt-2">Respuesta en menos de 24 horas hábiles.</p>
+<section id="cotizar" class="py-16 bg-mist"><div class="max-w-6xl mx-auto px-4"><p class="kick text-amber-700">Cotizador</p><h2 class="h mt-2 text-3xl md:text-4xl text-ink">Cotización Rápida (RFQ)</h2><p class="mt-2 text-slate-600">Respuesta en menos de 24 horas hábiles.</p>
 <div class="mt-8 max-w-2xl box p-6! md:p-8! hover:transform-none!">
-<form id="rfq" action="https://api.web3forms.com/submit" method="POST" novalidate class="space-y-5"><p id="stepLbl" class="text-sm font-semibold text-brand"></p>
+<form id="rfq" action="https://api.web3forms.com/submit" method="POST" novalidate class="space-y-5"><p id="stepLbl" class="text-sm font-semibold text-amber-700"></p>
 <!-- TODO: crear cuenta en https://web3forms.com y pegar la access_key para activar el envío real -->
 <input type="hidden" name="access_key" value=""/>
 <input type="hidden" name="operacion"/><input type="hidden" name="tipo_carga"/><input type="hidden" name="incoterm"/>
-<div data-s="0"><p class="font-semibold text-white mb-2">Tipo de operación</p><div class="flex flex-wrap gap-2" data-k="op">{rfqOptions.op.map(o => <button type="button" class="chip">{o}</button>)}</div></div>
-<div data-s="1" class="hide space-y-4"><div><p class="font-semibold text-white mb-2">Tipo de carga</p><div class="flex flex-wrap gap-2" data-k="carga">{rfqOptions.carga.map(o => <button type="button" class="chip">{o}</button>)}</div></div>
-<div><p class="font-semibold text-white mb-2">Incoterm estimado</p><div class="flex flex-wrap gap-2" data-k="inc">{rfqOptions.inc.map(o => <button type="button" class="chip">{o}</button>)}</div></div></div>
+<div data-s="0"><p class="font-semibold text-ink mb-2">Tipo de operación</p><div class="flex flex-wrap gap-2" data-k="op">{rfqOptions.op.map(o => <button type="button" class="chip">{o}</button>)}</div></div>
+<div data-s="1" class="hide space-y-4"><div><p class="font-semibold text-ink mb-2">Tipo de carga</p><div class="flex flex-wrap gap-2" data-k="carga">{rfqOptions.carga.map(o => <button type="button" class="chip">{o}</button>)}</div></div>
+<div><p class="font-semibold text-ink mb-2">Incoterm estimado</p><div class="flex flex-wrap gap-2" data-k="inc">{rfqOptions.inc.map(o => <button type="button" class="chip">{o}</button>)}</div></div></div>
 <div data-s="2" class="hide grid sm:grid-cols-2 gap-4"><input class="inp" name="nombre" placeholder="Nombre"/><input class="inp" name="empresa" placeholder="Empresa"/><input class="inp" name="correo" placeholder="Correo"/><input class="inp" name="tel" placeholder="Teléfono / WhatsApp"/></div>
-<p id="err" class="text-sm text-red-400"></p>
-<div class="flex justify-between"><button type="button" id="back" class="btn ghost hide">Atrás</button><span></span><button type="button" id="next" class="btn cta">Continuar</button><button id="send" class="btn cta hide">Enviar solicitud</button></div></form>
-<div id="ok" class="hide text-center py-8"><div class="text-5xl text-emerald-400">✓</div><h3 class="h mt-3 text-2xl">¡Solicitud enviada!</h3><p class="mt-1">Un especialista te contactará pronto.</p></div></div></div></section>
+<p id="err" class="text-sm text-red-600"></p>
+<div class="flex justify-between"><button type="button" id="back" class="btn ghostl hide">Atrás</button><span></span><button type="button" id="next" class="btn cta">Continuar</button><button id="send" class="btn cta hide">Enviar solicitud</button></div></form>
+<div id="ok" class="hide text-center py-8"><div class="text-5xl text-emerald-600">✓</div><h3 class="h mt-3 text-2xl text-ink">¡Solicitud enviada!</h3><p class="mt-1 text-slate-600">Un especialista te contactará pronto.</p></div></div></div></section>
 
 <script>
 const $ = (s: string) => document.querySelector(s) as HTMLElement;

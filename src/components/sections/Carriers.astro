@@ -1,6 +1,6 @@
 ---
 import { carriers } from '../../data/content';
 ---
-<section class="py-12"><div class="max-w-6xl mx-auto px-4"><p class="kick">Aliados</p><h2 class="h mt-2 text-3xl">Navieras y operadores</h2><p class="mt-2">Puertos frecuentes: Shanghai / Ningbo / Shenzhen ⇄ Manzanillo / Lázaro Cárdenas</p><div class="mt-6 grid grid-cols-2 md:grid-cols-6 gap-3">
-{carriers.map(c => <div class="box p-3! grid place-items-center grayscale opacity-60 hover:opacity-100 transition"><svg viewBox="0 0 120 34" class="w-full h-9 fill-slate-300" role="img" aria-label={c.name} set:html={c.svg}/></div>)}
+<section id="navieras" class="py-12 bg-white"><div class="max-w-6xl mx-auto px-4"><p class="kick text-amber-700">Aliados</p><h2 class="h mt-2 text-3xl text-ink">Navieras y operadores</h2><p class="mt-2 text-slate-600">Puertos frecuentes: Shanghai / Ningbo / Shenzhen ⇄ Manzanillo / Lázaro Cárdenas</p><div class="mt-6 grid grid-cols-2 md:grid-cols-6 gap-3">
+{carriers.map(c => <div class="box p-3! grid place-items-center grayscale opacity-60 hover:opacity-100 transition"><svg viewBox="0 0 120 34" class="w-full h-9 fill-slate-400" role="img" aria-label={c.name} set:html={c.svg}/></div>)}
 </div></div></section>
