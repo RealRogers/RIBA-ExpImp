@@ -8,7 +8,7 @@ Dirección de arte: **Estilo 1 "Corporate Editorial & Naval Trust"** — editori
 RIBA-Importaciones/
 │
 ├── public/                          # Assets estáticos (se copian tal cual a dist/)
-│   ├── favicon.svg                  # Ícono "SM" (ámbar sobre navy)
+│   ├── favicon.svg                  # Monograma "R" (ámbar sobre navy)
 │   └── images/
 │       ├── machinery/               # Vacío (.gitkeep) — colocar .webp del catálogo aquí
 │       ├── services/                # Fotos de servicios (importacion/exportacion/maquinaria .webp)
@@ -16,11 +16,15 @@ RIBA-Importaciones/
 │       └── wechat-qr.png            # ⚠️ Pendiente: QR real de WeChat (no existe aún)
 │
 ├── src/
-│   ├── pages/
-│   │   └── index.astro              # Única página. Ensambla secciones + script de modales
+│   ├── pages/                       # Modelo híbrido: home resumen + páginas de profundidad
+│   │   ├── index.astro              # Home: Hero, Services, Catalog(4), RouteBand, Carriers, RFQ
+│   │   ├── importacion.astro        # Servicio Importación: paso a paso + WhyUs + Process
+│   │   ├── exportacion.astro        # Servicio Exportación: normativas, ferias, logística
+│   │   ├── maquinaria.astro         # Catálogo completo: filtros por categoría + fichas
+│   │   └── cotizar.astro            # RFQ dedicado + contacto directo + FAQ
 │   │
 │   ├── layouts/
-│   │   └── Layout.astro             # <html> base: meta SEO, OG tags, Google Fonts, favicon
+│   │   └── Layout.astro             # <html> base: SEO/OG, fuentes, favicon + modales y botones flotantes globales
 │   │
 │   ├── styles/
 │   │   └── global.css               # @import "tailwindcss" + @theme (tokens) + clases custom
@@ -30,14 +34,14 @@ RIBA-Importaciones/
 │   │
 │   └── components/
 │       ├── layout/                  # Chrome del sitio
-│       │   ├── Header.astro         # Barra superior + nav sticky + menú móvil hamburguesa
+│       │   ├── Header.astro         # Topbar (no sticky, solo ES) + nav sticky + menú móvil ☰/✕
 │       │   └── Footer.astro         # Datos fiscales, oficinas, contacto, crédito RogersX
 │       │
-│       ├── sections/                # Secciones de la landing (en orden de aparición)
-│       │   ├── Hero.astro           # Foto full-bleed (fallback navy), headline, CTAs, badges
+│       ├── sections/                # Secciones compartidas entre páginas
+│       │   ├── Hero.astro           # Foto full-bleed (fallback), headline, CTAs + mapa SVG animado a la der.
 │       │   ├── Services.astro       # 3 tarjetas (Import/Export/Maquinaria) + fila de métricas
-│       │   ├── Catalog.astro        # Cards de maquinaria (4) con fallback de engranaje
-│       │   ├── RouteBand.astro      # Franja navy: ruta Ningbo→Manzanillo (SVG animado) + widget FX
+│       │   ├── Catalog.astro        # Cards de maquinaria (props: limit + fullHref) con fallback
+│       │   ├── RouteBand.astro      # Franja navy: copy de la ruta + widget FX (el mapa vive en Hero)
 │       │   ├── WhyUs.astro          # 4 garantías numeradas con íconos
 │       │   ├── Process.astro        # Timeline de 4 fases (línea conectora responsive)
 │       │   ├── RfqForm.astro        # Cotizador de 3 pasos (chips + form + validación)
@@ -45,7 +49,7 @@ RIBA-Importaciones/
 │       │   └── Faq.astro            # Acordeón de preguntas frecuentes
 │       │
 │       └── ui/                      # Elementos reutilizables / overlays
-│           ├── Icon.astro           # Mapa de íconos SVG (check, shield, clip, file, truck, gear, whatsapp)
+│           ├── Icon.astro           # Mapa de íconos SVG (check, shield, clip, file, truck, gear, whatsapp, ship, plane)
 │           ├── FloatingButtons.astro# Botones flotantes WeChat + WhatsApp (fixed bottom-right)
 │           ├── CreditModal.astro    # Modal "Sitio por RogersX"
 │           └── WechatModal.astro    # Modal con <img src="/images/wechat-qr.png">
@@ -79,10 +83,13 @@ Todo el contenido se renderiza **en build-time**. El JavaScript en el cliente so
 
 | Export | Tipo | Usado por |
 |---|---|---|
-| `whatsappUrl` | `string` | Header (desktop + móvil), FloatingButtons — ⚠️ `'#'` con TODO |
-| `wechatId`, `phone` | `string` | Footer, WechatModal |
-| `machines` | `Machine[]` | Catalog |
-| `importServices`, `exportServices` | `string[]` | Services |
+| `whatsappUrl` | `string` | Header, FloatingButtons, /cotizar — ⚠️ `'#'` con TODO |
+| `wechatId`, `phone` | `string` | Footer, WechatModal, /cotizar |
+| `machines` | `Machine[]` (15, con `category` + `specs`) | Catalog (home, `limit=4`) / maquinaria.astro (completo + filtros) |
+| `machineCategories` | filtros | /maquinaria (chips) |
+| `importSteps`, `exportPoints` | `DetailStep[]` | /importacion, /exportacion |
+| `machineryServices` | `string[]` | Services (tarjeta Maquinaria) |
+| `importServices`, `exportServices` | `string[]` | Services / exportacion |
 | `stats` | `Stat[]` | Services (fila de métricas — placeholders por confirmar) |
 | `serviceImages`, `heroImage` | rutas `/images/...` | Services / Hero (fallback navy si el archivo no existe) |
 | `fxRates` | `FxRate[]` | RouteBand (widget FX indicativo) |
@@ -96,10 +103,11 @@ Todo el contenido se renderiza **en build-time**. El JavaScript en el cliente so
 
 | Interacción | Script vive en |
 |---|---|
-| Menú móvil (toggle + `aria-expanded`) | `Header.astro` |
+| Menú móvil (toggle ☰/✕ + `aria-expanded` + cierre con `Escape`) | `Header.astro` |
 | Acordeón FAQ | `Faq.astro` |
 | RFQ: chips on/off, pasos 1→3, validación, sync a inputs hidden | `RfqForm.astro` |
-| Modales: abrir, cerrar con ✕ / click-outside / `Escape` | `index.astro` |
+| Filtros de catálogo por categoría | `maquinaria.astro` |
+| Modales: abrir, cerrar con ✕ / click-outside / `Escape` | `Layout.astro` (global) |
 | Animación ruta marítima | SVG nativo (`animateMotion`), sin JS |
 
 ## Convenciones
@@ -110,7 +118,9 @@ Todo el contenido se renderiza **en build-time**. El JavaScript en el cliente so
 - **Clases custom** (no Tailwind): `.btn`, `.cta` (ámbar, texto navy), `.ghost` (sobre navy), `.ghostl` (sobre claro), `.chip`, `.inp`, `.hide`, `.h`, `.kick`, `.box` (tarjeta blanca con sombra sutil), `.dash`, `.mono`, `.ic` — definidas en `global.css`.
 - **Scripts en `.astro`**: son módulos bundled por Astro; se ejecutan una vez por página.
 - **`set:html`**: usado en `Icon.astro` y `Carriers.astro` para inyectar markup SVG interno.
-- **Fallbacks de imagen**: `Catalog.astro` usa `onerror="this.remove()"` para ocultar `<img>` si el `.webp` no existe y mostrar el placeholder de engranaje.
+- **Fallbacks de imagen**: `Catalog.astro`, `Services.astro` y `Hero.astro` usan `onerror="this.remove()"` para ocultar `<img>` si el archivo no existe y mostrar el placeholder navy.
+- **Sticky solo en el nav**: el topbar (ubicaciones) hace scroll; el nav permanece fijo. Los anclas (`section[id]`, `article[id]`) compensan con `scroll-margin-top: 5rem`.
+- **Táctil**: `@media (hover: none)` desactiva el lift de `.box` para evitar hover fantasma en móviles. Chips de contenido largo se acortan bajo `sm` (ej. chip de voltaje en `Catalog`).
 
 ## Integraciones preparadas (pendientes)
 

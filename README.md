@@ -1,6 +1,14 @@
 # RIBA — Landing Page
 
-Sitio de una sola página para **RIBA**, empresa de comercio exterior en el corredor China ⇄ México (importación/exportación, maquinaria industrial, aduanas, DDP puerta a puerta).
+Sitio multi-página (modelo híbrido) para **RIBA**, empresa de comercio exterior en el corredor China ⇄ México (importación/exportación, maquinaria industrial, aduanas, DDP puerta a puerta).
+
+| Ruta | Contenido |
+|---|---|
+| `/` | Home resumen ejecutivo: hero + mapa, servicios, 4 máquinas destacadas, ruta, navieras, cotizador |
+| `/importacion` | Detalle del servicio: auditoría en Shenzhen, FCL/LCL, padrón, despacho aduanal |
+| `/exportacion` | Detalle del servicio: normativas chinas, Feria de Cantón, logística de salida |
+| `/maquinaria` | Catálogo completo (15 equipos) con filtros por categoría y fichas técnicas |
+| `/cotizar` | Página dedicada al formulario RFQ + contacto directo + FAQ |
 
 Dirección de arte: **"Corporate Editorial & Naval Trust"** — editorial claro con bandas navy `#0B2D4A`, acento ámbar `#F59E0B` y ritmo que alterna secciones blancas/claras con franjas navy. Diseñado para transmitir solidez institucional a decisores +45.
 
@@ -14,7 +22,10 @@ Dirección de arte: **"Corporate Editorial & Naval Trust"** — editorial claro 
 
 ```
 ├── public/                  # Assets estáticos (favicon, imágenes)
-│   └── images/machinery/    # Fotos del catálogo (colocar .webp aquí)
+│   └── images/
+│       ├── machinery/       # Fotos del catálogo (colocar .webp aquí)
+│       ├── services/        # Fotos de servicios (importacion/exportacion/maquinaria)
+│       └── hero-port.webp   # Foto del hero (fallback navy si falta)
 ├── src/
 │   ├── components/
 │   │   ├── layout/          # Header, Footer
@@ -29,6 +40,8 @@ Dirección de arte: **"Corporate Editorial & Naval Trust"** — editorial claro 
 ├── skills-lock.json         # Lockfile del instalador de skills
 └── .devin/skills/           # Agent skills (mattpocock/skills)
 ```
+
+> Ver [Estructura.md](Estructura.md) para la arquitectura detallada: tokens, convenciones, flujo de datos y mapa de componentes.
 
 ## Desarrollo
 
@@ -63,7 +76,6 @@ Todo el contenido vive en **`src/data/content.ts`** (type-safe):
 - [ ] Imágenes del catálogo en `public/images/machinery/*.webp` (hoy caen al placeholder de engranaje vía `onerror`)
 - [ ] Foto del hero en `public/images/hero-port.webp` y servicios en `public/images/services/*.webp` (hoy: fallback degradado navy)
 - [ ] Métricas reales: `stats` en `content.ts` tiene placeholders (+120 clientes, +10 años)
-- [ ] Selector de idioma ES/EN/中文 es decorativo
 - [ ] Datos de contacto reales (teléfono y RFC son ficticios)
 - [ ] FX: conectar a una API si se requiere dato real
 
