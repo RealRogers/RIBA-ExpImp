@@ -1,0 +1,76 @@
+<!doctype html><html lang="es"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/><title>SinoMex Logística | Comercio Exterior China–México</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="tailwind.config.js"></script>
+<link rel="stylesheet" href="styles.css"/></head>
+<body>
+<header class="sticky top-0 z-40">
+<div class="bg-[#070D1F] text-xs text-slate-300"><div class="max-w-6xl mx-auto px-4 py-2 flex justify-between gap-3"><span>Operaciones activas en Shenzhen, Ningbo y Manzanillo / CDMX</span><span class="shrink-0"><button class="text-orange-400 font-bold px-2 py-2">ES</button><button class="px-2 py-2">EN</button><button class="px-2 py-2">中文</button></span></div></div>
+<nav class="bg-ink/95 backdrop-blur border-b border-white/10"><div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+<a href="#" class="h text-2xl">Sino<span class="text-brand">Mex</span></a>
+<ul class="hidden md:flex gap-6 text-sm font-medium"><li><a href="#importacion" class="hover:text-brand">Importación</a></li><li><a href="#exportacion" class="hover:text-brand">Exportación</a></li><li><a href="#maquinaria" class="hover:text-brand">Maquinaria</a></li><li><a href="#proceso" class="hover:text-brand">Proceso</a></li><li><a href="#cotizar" class="hover:text-brand">Cotizar</a></li></ul>
+<div class="hidden md:flex gap-2"><a href="#" class="btn border border-green-500 text-green-400 !py-2">WhatsApp</a><a href="#cotizar" class="btn cta !py-2">Cotización Rápida</a></div>
+<div class="md:hidden flex items-center gap-2"><a href="#cotizar" class="btn cta !py-2 text-sm">Cotizar</a><button id="mb" aria-label="Menú" aria-expanded="false" aria-controls="mnav" class="w-11 h-11 grid place-items-center rounded-lg border border-white/20 text-white"><svg class="ic" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></div><div id="mnav" class="hide md:hidden border-t border-white/10 bg-ink px-4 py-2"><a href="#importacion" class="block py-3">Importación</a><a href="#exportacion" class="block py-3">Exportación</a><a href="#maquinaria" class="block py-3">Maquinaria</a><a href="#proceso" class="block py-3">Proceso</a><a href="#cotizar" class="block py-3">Cotizar</a><a href="#" class="block py-3 text-green-400">WhatsApp</a></div></nav></header>
+<main>
+<section class="py-14 md:py-20"><div class="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+<div><p class="kick">Corredor China ⇄ México</p>
+<h1 class="h mt-4 text-4xl md:text-6xl leading-[1.05]">Su maquinaria, de la fábrica en China a su bodega, sin sorpresas.</h1>
+<p class="mt-5 text-lg max-w-xl">Seguridad aduanal, inspección en fábrica y entrega puerta a puerta (DDP). Sin sorpresas arancelarias.</p>
+<div class="mt-8 flex flex-col sm:flex-row gap-3"><a href="#importacion" class="btn cta">Quiero Importar de China →</a><a href="#exportacion" class="btn ghost">Quiero Exportar a China →</a></div>
+<div class="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm font-semibold text-white"><span>+500 Contenedores</span><span>Padrón de Importadores Activo</span><span>Inspección In-Situ en China</span></div></div>
+<div class="rounded-3xl bg-card border border-white/10 p-3"><svg viewBox="0 0 400 260" class="w-full" role="img" aria-label="Ruta marítima de Ningbo a Manzanillo por el Pacífico">
+<g stroke="#fff" stroke-opacity=".05"><path d="M0 65H400M0 130H400M0 195H400M100 0V260M200 0V260M300 0V260"/></g>
+<path d="M0 40 L40 28 L78 52 L92 96 L70 128 L84 160 L58 196 L30 190 L0 210Z" fill="#fff" fill-opacity=".07"/>
+<path d="M400 30 L352 36 L318 74 L330 120 L312 150 L338 172 L322 196 L352 214 L400 230Z" fill="#fff" fill-opacity=".07"/>
+<path id="r" class="dash" d="M92 100 C 150 40, 250 40, 322 165" fill="none" stroke="#F97316" stroke-width="2.5" stroke-linecap="round"/>
+<circle r="5" fill="#fff"><animateMotion dur="7s" repeatCount="indefinite"><mpath href="#r"/></animateMotion></circle>
+<circle cx="92" cy="100" r="7" fill="#F97316"/><circle cx="322" cy="165" r="7" fill="#F97316"/>
+<text x="92" y="124" fill="#fff" font-size="12" text-anchor="middle" font-weight="600">Ningbo · Shanghai</text>
+<text x="322" y="190" fill="#fff" font-size="12" text-anchor="middle" font-weight="600">Manzanillo</text>
+<text x="205" y="150" fill="#64748b" font-size="11" text-anchor="middle" letter-spacing="3">OCÉANO PACÍFICO</text>
+<text x="200" y="245" fill="#94a3b8" font-size="10" text-anchor="middle">Tránsito marítimo promedio: 30–45 días</text></svg></div></div></section>
+
+<section id="servicios" class="py-12 bg-deep"><div class="max-w-6xl mx-auto px-4"><p class="kick">Servicios</p><h2 class="h mt-2 text-3xl md:text-4xl">Una operación, dos sentidos</h2>
+<div class="mt-8 grid md:grid-cols-4 gap-4">
+<article id="importacion" class="box md:col-span-2 md:row-span-2"><p class="kick">China → México</p><h3 class="h text-3xl mt-2">Importación</h3><ul class="mt-5 space-y-3 chk" data-l="Sourcing de proveedores verificados|Auditoría e inspección en fábrica|Flete marítimo/aéreo FCL/LCL|Liberación aduanal mexicana"></ul><a href="#cotizar" class="btn cta mt-6">Cotizar importación</a></article>
+<article class="box"><p class="h text-5xl">+500</p><p class="mt-1 text-sm">contenedores gestionados</p></article>
+<article class="box mono !p-4 text-xs"><p class="text-slate-500 mb-2 tracking-widest">FX · INDICATIVO</p>
+<div class="space-y-2"><div class="flex justify-between"><span class="text-white">USD/MXN</span><span class="text-white">17.42</span><span class="text-red-400">▼0.21%</span></div><div class="flex justify-between"><span class="text-white">USD/CNY</span><span class="text-white">7.18</span><span class="text-emerald-400">▲0.08%</span></div><div class="flex justify-between"><span class="text-white">CNY/MXN</span><span class="text-white">2.43</span><span class="text-emerald-400">▲0.15%</span></div></div></article>
+<article id="exportacion" class="box md:col-span-2"><p class="kick">México → China</p><h3 class="h text-2xl mt-1">Exportación</h3><ul class="mt-4 space-y-3 chk" data-l="Cumplimiento de normativas chinas|Certificación de empaque|Enlace comercial en ferias asiáticas|Flete de exportación"></ul><a href="#cotizar" class="btn cta mt-5 !py-2">Cotizar exportación</a></article></div></div></section>
+
+<section id="maquinaria" class="py-14"><div class="max-w-6xl mx-auto px-4"><p class="kick">Catálogo</p><h2 class="h mt-2 text-3xl md:text-4xl">Maquinaria Industrial</h2><p class="mt-2">Equipos adaptados al voltaje y normativa mexicana.</p><div id="machines" class="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4"></div></div></section>
+
+<section class="py-14 bg-deep"><div class="max-w-6xl mx-auto px-4"><p class="kick">Nuestra garantía</p><h2 class="h mt-2 text-3xl md:text-4xl">¿Por qué con nosotros?</h2><div id="why" class="mt-8 grid md:grid-cols-2 gap-4"></div></div></section>
+
+<section id="proceso" class="py-14"><div class="max-w-6xl mx-auto px-4"><p class="kick">Método</p><h2 class="h mt-2 text-3xl md:text-4xl">Cuatro fases, trazabilidad total</h2>
+<ol id="steps" class="relative mt-12 grid md:grid-cols-4 gap-8"><div class="md:hidden absolute left-5 top-5 bottom-10 w-0.5 bg-gradient-to-b from-brand to-orange-300/20"></div><div class="hidden md:block absolute left-[12.5%] right-[12.5%] top-5 h-0.5 bg-gradient-to-r from-brand to-orange-300/30"></div></ol></div></section>
+
+<section id="cotizar" class="py-16 bg-deep"><div class="max-w-6xl mx-auto px-4"><p class="kick">Cotizador</p><h2 class="h mt-2 text-3xl md:text-4xl">Cotización Rápida (RFQ)</h2><p class="mt-2">Respuesta en menos de 24 horas hábiles.</p>
+<div class="mt-8 max-w-2xl box !p-6 md:!p-8 hover:!transform-none">
+<form id="rfq" novalidate class="space-y-5"><p id="stepLbl" class="text-sm font-semibold text-brand"></p>
+<div data-s="0"><p class="font-semibold text-white mb-2">Tipo de operación</p><div class="flex flex-wrap gap-2" data-k="op"><button type="button" class="chip">Importación</button><button type="button" class="chip">Exportación</button></div></div>
+<div data-s="1" class="hide space-y-4"><div><p class="font-semibold text-white mb-2">Tipo de carga</p><div class="flex flex-wrap gap-2" data-k="carga"><button type="button" class="chip">Maquinaria</button><button type="button" class="chip">Materia Prima o Productos</button><button type="button" class="chip">Carga General</button></div></div>
+<div><p class="font-semibold text-white mb-2">Incoterm estimado</p><div class="flex flex-wrap gap-2" data-k="inc"><button type="button" class="chip">FOB</button><button type="button" class="chip">EXW</button><button type="button" class="chip">CIF</button><button type="button" class="chip">DDP</button><button type="button" class="chip">No lo sé</button></div></div></div>
+<div data-s="2" class="hide grid sm:grid-cols-2 gap-4"><input class="inp" name="nombre" placeholder="Nombre"/><input class="inp" name="empresa" placeholder="Empresa"/><input class="inp" name="correo" placeholder="Correo"/><input class="inp" name="tel" placeholder="Teléfono / WhatsApp"/></div>
+<p id="err" class="text-sm text-red-400"></p>
+<div class="flex justify-between"><button type="button" id="back" class="btn ghost hide">Atrás</button><span></span><button type="button" id="next" class="btn cta">Continuar</button><button id="send" class="btn cta hide">Enviar solicitud</button></div></form>
+<div id="ok" class="hide text-center py-8"><div class="text-5xl text-emerald-400">✓</div><h3 class="h mt-3 text-2xl">¡Solicitud enviada!</h3><p class="mt-1">Un especialista te contactará pronto.</p></div></div></div></section>
+
+<section class="py-12"><div class="max-w-6xl mx-auto px-4"><p class="kick">Aliados</p><h2 class="h mt-2 text-3xl">Navieras y operadores</h2><p class="mt-2">Puertos frecuentes: Shanghai / Ningbo / Shenzhen ⇄ Manzanillo / Lázaro Cárdenas</p><div id="carriers" class="mt-6 grid grid-cols-2 md:grid-cols-6 gap-3"></div></div></section>
+
+<section class="py-14 bg-deep"><div class="max-w-3xl mx-auto px-4"><p class="kick">Dudas</p><h2 class="h mt-2 text-3xl md:text-4xl">Preguntas frecuentes</h2><div id="faq" class="mt-8 space-y-3"></div></div></section>
+</main>
+<footer class="bg-black/40 text-slate-400 text-sm"><div class="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-8">
+<div><p class="h text-xl">Sino<span class="text-brand">Mex</span></p><p class="mt-2">SinoMex Logística S.A. de C.V. · RFC SML000000XX0</p><a href="#" class="underline mt-1 inline-block py-2">Aviso de privacidad</a></div>
+<div><p class="font-semibold text-white">Oficinas</p><p class="mt-1">Guadalajara / CDMX, México</p><p>Guangzhou / Yiwu, China</p></div>
+<div><p class="font-semibold text-white">Contacto</p><p class="mt-1">WhatsApp: +52 55 0000 0000</p><p>WeChat: sinomex_cn</p></div></div>
+<div class="border-t border-white/10 py-4 pb-24 md:pb-4 text-center text-xs">© 2026 SinoMex Logística · <button id="creditBtn" class="underline hover:text-orange-400 py-2 px-1">Sitio por RogersX</button></div></footer>
+
+<div id="credit" class="hide fixed inset-0 z-50 bg-black/70 grid place-items-center p-4"><div class="relative bg-card border border-white/10 rounded-2xl p-8 max-w-sm w-full text-center"><button class="x absolute top-3 right-3 text-xl text-white" aria-label="Cerrar">✕</button><p class="h text-2xl">RogersX</p><p class="mt-1">Desarrollador Web</p><p class="mt-2 text-xs">¿Necesitas un sitio como este? Contáctame.</p><a href="https://github.com/" target="_blank" rel="noreferrer" class="btn cta mt-5">Ver GitHub</a></div></div>
+<div id="wcModal" class="hide fixed inset-0 z-50 bg-black/70 grid place-items-center p-4"><div class="relative bg-white rounded-2xl p-8 max-w-xs max-h-[90vh] overflow-y-auto w-full text-center text-slate-700"><button class="x absolute top-3 right-3 text-xl" aria-label="Cerrar">✕</button><p class="font-bold text-ink text-lg">微信 WeChat</p><svg id="qr" viewBox="0 0 25 25" class="w-48 h-48 mx-auto my-4" shape-rendering="crispEdges"></svg><p class="font-semibold text-ink">Escanea para contactar por WeChat</p><p class="text-xs mt-1">ID: sinomex_cn</p></div></div>
+
+<div class="fixed right-4 bottom-4 z-40 flex flex-col gap-3">
+<button id="wcBtn" aria-label="WeChat" class="w-12 h-12 rounded-full bg-emerald-600 text-white shadow-lg text-lg hover:scale-110 transition self-end">微</button>
+<a href="#" aria-label="WhatsApp" class="w-14 h-14 rounded-full bg-green-500 text-white shadow-lg grid place-items-center hover:scale-110 transition"><svg class="ic" viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.7-5.4A8.4 8.4 0 1 1 21 11.5z"/></svg></a></div>
+
+<script src="script.js"></script></body></html>

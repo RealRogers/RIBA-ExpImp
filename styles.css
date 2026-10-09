@@ -1,0 +1,138 @@
+html {
+  scroll-behavior: smooth;
+  font-family: Inter, system-ui, sans-serif;
+}
+
+section[id] {
+  scroll-margin-top: 7rem;
+}
+
+body {
+  background: #0B132B;
+  color: #cbd5e1;
+}
+
+:root {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  border-radius: .5rem;
+  padding: .75rem 1.25rem;
+  font-weight: 600;
+  transition: .2s;
+}
+
+.cta {
+  background: #F97316;
+  color: #fff;
+}
+
+.cta:hover {
+  background: #EA580C;
+}
+
+.ghost {
+  border: 1px solid rgba(255, 255, 255, .35);
+  color: #fff;
+}
+
+.ghost:hover {
+  background: rgba(255, 255, 255, .1);
+}
+
+.chip {
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: .5rem;
+  padding: .5rem 1rem;
+  font-size: .875rem;
+  font-weight: 500;
+  color: #e2e8f0;
+}
+
+.chip.on {
+  background: #F97316;
+  color: #fff;
+  border-color: #F97316;
+}
+
+.inp {
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: .5rem;
+  padding: .5rem .75rem;
+  background: #0B132B;
+  color: #fff;
+}
+
+.hide {
+  display: none !important;
+}
+
+.h {
+  font-family: Fraunces, Georgia, serif;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: #fff;
+}
+
+.kick {
+  font-size: .75rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #FB923C;
+}
+
+.box {
+  background: #111C3A;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  transition: .25s;
+}
+
+.box:hover {
+  transform: translateY(-3px);
+  border-color: rgba(249, 115, 22, .5);
+}
+
+.dash {
+  stroke-dasharray: 6 8;
+  animation: d 1.6s linear infinite;
+}
+
+@keyframes d {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.ic {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dash {
+    animation: none;
+  }
+
+  .box {
+    transition: none;
+  }
+}
