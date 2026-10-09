@@ -1,0 +1,33 @@
+---
+import { whatsappUrl } from '../../data/content';
+
+const nav = [
+  ['#importacion', 'Importación'],
+  ['#exportacion', 'Exportación'],
+  ['#maquinaria', 'Maquinaria'],
+  ['#proceso', 'Proceso'],
+  ['#cotizar', 'Cotizar'],
+] as const;
+---
+<header class="sticky top-0 z-40">
+<div class="bg-[#070D1F] text-xs text-slate-300"><div class="max-w-6xl mx-auto px-4 py-2 flex justify-between gap-3"><span>Operaciones activas en Shenzhen, Ningbo y Manzanillo / CDMX</span><span class="shrink-0"><button class="text-orange-400 font-bold px-2 py-2">ES</button><button class="px-2 py-2">EN</button><button class="px-2 py-2">中文</button></span></div></div>
+<nav class="bg-ink/95 backdrop-blur border-b border-white/10"><div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+<a href="#" class="h text-2xl">Sino<span class="text-brand">Mex</span></a>
+<ul class="hidden md:flex gap-6 text-sm font-medium">{nav.map(([href, label]) => <li><a href={href} class="hover:text-brand">{label}</a></li>)}</ul>
+<div class="hidden md:flex gap-2"><a href={whatsappUrl} class="btn border border-green-500 text-green-400 py-2!">WhatsApp</a><a href="#cotizar" class="btn cta py-2!">Cotización Rápida</a></div>
+<div class="md:hidden flex items-center gap-2"><a href="#cotizar" class="btn cta py-2! text-sm">Cotizar</a><button id="mb" aria-label="Menú" aria-expanded="false" aria-controls="mnav" class="w-11 h-11 grid place-items-center rounded-lg border border-white/20 text-white"><svg class="ic" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div></div><div id="mnav" class="hide md:hidden border-t border-white/10 bg-ink px-4 py-2">{nav.map(([href, label]) => <a href={href} class="block py-3">{label}</a>)}<a href={whatsappUrl} class="block py-3 text-green-400">WhatsApp</a></div></nav></header>
+
+<script>
+const mb = document.getElementById('mb')!;
+const mn = document.getElementById('mnav')!;
+mb.onclick = () => {
+  const hidden = mn.classList.toggle('hide');
+  mb.setAttribute('aria-expanded', String(!hidden));
+};
+mn.onclick = (e) => {
+  if ((e.target as HTMLElement).tagName === 'A') {
+    mn.classList.add('hide');
+    mb.setAttribute('aria-expanded', 'false');
+  }
+};
+</script>

@@ -1,54 +1,65 @@
 # SinoMex Logística — Landing Page
 
-Sitio estático de una sola página para **SinoMex Logística**, empresa de comercio exterior en el corredor China ⇄ México (importación/exportación, maquinaria industrial, aduanas, DDP puerta a puerta).
-
-Sin build, sin dependencias npm: solo HTML + CSS + JS.
+Sitio de una sola página para **SinoMex Logística**, empresa de comercio exterior en el corredor China ⇄ México (importación/exportación, maquinaria industrial, aduanas, DDP puerta a puerta).
 
 ## Stack
 
-- **Tailwind CSS** vía [Play CDN](https://cdn.tailwindcss.com) con config propia en `tailwind.config.js`
-- **CSS custom** en `styles.css` (botones, chips, cards, animación de ruta)
-- **JavaScript vanilla** en `script.js` — todo el contenido dinámico se genera desde arrays (catálogo, FAQ, navieras, pasos)
+- **[Astro](https://astro.build)** (SSG) + TypeScript estricto
+- **Tailwind CSS v4** vía `@tailwindcss/vite` — config CSS-first en `src/styles/global.css` (`@theme`), sin `tailwind.config`
 - Tipografías: Fraunces, Inter y JetBrains Mono (Google Fonts)
 
 ## Estructura
 
 ```
-├── index.html           # Markup de toda la página
-├── styles.css           # Estilos propios (.btn, .cta, .box, .chip, .kick, etc.)
-├── tailwind.config.js   # Colores (ink, deep, card, brand) y fuentes — carga tras el CDN
-├── script.js            # Lógica: catálogo, cotizador RFQ, FAQ, modales, QR
-├── skills-lock.json     # Lockfile del instalador de skills
-└── .devin/skills/       # Agent skills (mattpocock/skills)
+├── public/                  # Assets estáticos (favicon, imágenes)
+│   └── images/machinery/    # Fotos del catálogo (colocar .webp aquí)
+├── src/
+│   ├── components/
+│   │   ├── layout/          # Header, Footer
+│   │   ├── sections/        # Hero, HeroMap, Services, Catalog, WhyUs,
+│   │   │                    #   Process, RfqForm, Carriers, Faq
+│   │   └── ui/              # Icon, FloatingButtons, CreditModal, WechatModal
+│   ├── data/content.ts      # Todos los datos del sitio (interfaces TS)
+│   ├── layouts/Layout.astro # HTML base, fuentes, meta tags
+│   ├── pages/index.astro    # Ensamblaje de la página
+│   └── styles/global.css    # Tailwind + @theme + clases custom
+├── astro.config.mjs
+├── skills-lock.json         # Lockfile del instalador de skills
+└── .devin/skills/           # Agent skills (mattpocock/skills)
 ```
 
-## Ver el sitio
-
-Abrir `index.html` directamente en el navegador, o servir la carpeta:
+## Desarrollo
 
 ```bash
-npx serve .
+npm install
+npm run dev       # http://localhost:4321
+npm run build     # genera dist/
+npm run preview   # sirve dist/
 ```
 
 ## Personalización rápida
 
-| Quiero cambiar... | Dónde |
+Todo el contenido vive en **`src/data/content.ts`** (type-safe):
+
+| Quiero cambiar... | Edita |
 |---|---|
-| Colores / fuentes | `tailwind.config.js` |
-| Catálogo de maquinaria | Array `M` en `script.js` (el 4º elemento es la URL de imagen, hoy `null` = placeholder) |
-| Preguntas frecuentes | Array `F` en `script.js` |
-| Logos de navieras | Objeto `L` en `script.js` (wordmarks SVG en grises) |
-| Pasos del proceso | `insertAdjacentHTML` de `#steps` en `script.js` |
+| Catálogo de maquinaria | `machines` (imágenes van en `public/images/machinery/`) |
+| Servicios import/export | `importServices` / `exportServices` |
+| Tipos de cambio FX | `fxRates` (hardcodeados, indicativos) |
+| Garantías, pasos, navieras | `whyItems`, `steps`, `carriers` |
+| FAQ | `faqs` |
+| WhatsApp / teléfono / WeChat | `whatsappUrl`, `phone`, `wechatId` |
+| Colores y fuentes | Bloque `@theme` en `src/styles/global.css` |
 
 ## Pendientes (placeholders)
 
-- [ ] Botones de **WhatsApp** y **aviso de privacidad** apuntan a `#`
-- [ ] El **cotizador RFQ** valida pero no envía a ningún backend — solo muestra la confirmación
-- [ ] El **QR de WeChat** es decorativo (generado proceduralmente, no escaneable)
-- [ ] Selector de idioma **ES/EN/中文** no tiene funcionalidad
-- [ ] Imágenes del catálogo de maquinaria (URLs en el array `M`)
-- [ ] Datos de contacto reales (teléfono `+52 55 0000 0000` y RFC son ficticios)
-- [ ] Tipos de cambio FX hardcodeados (no hay API)
+- [ ] **WhatsApp**: `whatsappUrl` en `content.ts` es `#` (falta número real)
+- [ ] **RFQ**: el form ya tiene `action="https://api.web3forms.com/submit"`; falta pegar el `access_key` (input hidden en `RfqForm.astro`) para activar el envío real
+- [ ] **QR de WeChat**: colocar imagen real en `public/images/wechat-qr.png`
+- [ ] Imágenes del catálogo en `public/images/machinery/*.webp` (hoy caen al placeholder de engranaje vía `onerror`)
+- [ ] Selector de idioma ES/EN/中文 es decorativo
+- [ ] Datos de contacto reales (teléfono y RFC son ficticios)
+- [ ] FX: conectar a una API si se requiere dato real
 
 ## Agent skills
 

@@ -1,0 +1,11 @@
+---
+import { importServices, exportServices, fxRates } from '../../data/content';
+import Icon from '../ui/Icon.astro';
+---
+<section id="servicios" class="py-12 bg-deep"><div class="max-w-6xl mx-auto px-4"><p class="kick">Servicios</p><h2 class="h mt-2 text-3xl md:text-4xl">Una operación, dos sentidos</h2>
+<div class="mt-8 grid md:grid-cols-4 gap-4">
+<article id="importacion" class="box md:col-span-2 md:row-span-2"><p class="kick">China → México</p><h3 class="h text-3xl mt-2">Importación</h3><ul class="mt-5 space-y-3">{importServices.map(s => <li class="flex gap-2"><span class="text-emerald-400 shrink-0"><Icon name="check"/></span>{s}</li>)}</ul><a href="#cotizar" class="btn cta mt-6">Cotizar importación</a></article>
+<article class="box"><p class="h text-5xl">+500</p><p class="mt-1 text-sm">contenedores gestionados</p></article>
+<article class="box mono p-4! text-xs"><p class="text-slate-500 mb-2 tracking-widest">FX · INDICATIVO</p>
+<div class="space-y-2">{fxRates.map(f => <div class="flex justify-between"><span class="text-white">{f.pair}</span><span class="text-white">{f.rate}</span><span class={f.up ? 'text-emerald-400' : 'text-red-400'}>{f.change}</span></div>)}</div></article>
+<article id="exportacion" class="box md:col-span-2"><p class="kick">México → China</p><h3 class="h text-2xl mt-1">Exportación</h3><ul class="mt-4 space-y-3">{exportServices.map(s => <li class="flex gap-2"><span class="text-emerald-400 shrink-0"><Icon name="check"/></span>{s}</li>)}</ul><a href="#cotizar" class="btn cta mt-5 py-2!">Cotizar exportación</a></article></div></div></section>

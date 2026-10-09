@@ -1,0 +1,54 @@
+---
+import { rfqOptions } from '../../data/content';
+---
+<section id="cotizar" class="py-16 bg-deep"><div class="max-w-6xl mx-auto px-4"><p class="kick">Cotizador</p><h2 class="h mt-2 text-3xl md:text-4xl">Cotización Rápida (RFQ)</h2><p class="mt-2">Respuesta en menos de 24 horas hábiles.</p>
+<div class="mt-8 max-w-2xl box p-6! md:p-8! hover:transform-none!">
+<form id="rfq" action="https://api.web3forms.com/submit" method="POST" novalidate class="space-y-5"><p id="stepLbl" class="text-sm font-semibold text-brand"></p>
+<!-- TODO: crear cuenta en https://web3forms.com y pegar la access_key para activar el envío real -->
+<input type="hidden" name="access_key" value=""/>
+<input type="hidden" name="operacion"/><input type="hidden" name="tipo_carga"/><input type="hidden" name="incoterm"/>
+<div data-s="0"><p class="font-semibold text-white mb-2">Tipo de operación</p><div class="flex flex-wrap gap-2" data-k="op">{rfqOptions.op.map(o => <button type="button" class="chip">{o}</button>)}</div></div>
+<div data-s="1" class="hide space-y-4"><div><p class="font-semibold text-white mb-2">Tipo de carga</p><div class="flex flex-wrap gap-2" data-k="carga">{rfqOptions.carga.map(o => <button type="button" class="chip">{o}</button>)}</div></div>
+<div><p class="font-semibold text-white mb-2">Incoterm estimado</p><div class="flex flex-wrap gap-2" data-k="inc">{rfqOptions.inc.map(o => <button type="button" class="chip">{o}</button>)}</div></div></div>
+<div data-s="2" class="hide grid sm:grid-cols-2 gap-4"><input class="inp" name="nombre" placeholder="Nombre"/><input class="inp" name="empresa" placeholder="Empresa"/><input class="inp" name="correo" placeholder="Correo"/><input class="inp" name="tel" placeholder="Teléfono / WhatsApp"/></div>
+<p id="err" class="text-sm text-red-400"></p>
+<div class="flex justify-between"><button type="button" id="back" class="btn ghost hide">Atrás</button><span></span><button type="button" id="next" class="btn cta">Continuar</button><button id="send" class="btn cta hide">Enviar solicitud</button></div></form>
+<div id="ok" class="hide text-center py-8"><div class="text-5xl text-emerald-400">✓</div><h3 class="h mt-3 text-2xl">¡Solicitud enviada!</h3><p class="mt-1">Un especialista te contactará pronto.</p></div></div></div></section>
+
+<script>
+const $ = (s: string) => document.querySelector(s) as HTMLElement;
+const $$ = (s: string) => [...document.querySelectorAll(s)] as HTMLElement[];
+const H: Record<string, string> = { op: 'operacion', carga: 'tipo_carga', inc: 'incoterm' };
+let step = 0;
+const v: Record<string, string> = {};
+$$('[data-k]').forEach(g => g.querySelectorAll('.chip').forEach(c => (c as HTMLElement).onclick = () => {
+  g.querySelectorAll('.chip').forEach(x => x.classList.remove('on'));
+  c.classList.add('on');
+  v[g.dataset.k!] = c.textContent!;
+  ($(`input[name="${H[g.dataset.k!]}"]`) as HTMLInputElement).value = c.textContent!;
+}));
+function show() {
+  $$('[data-s]').forEach(e => e.classList.toggle('hide', +(e.dataset.s!) !== step));
+  $('#stepLbl').textContent = `Paso ${step + 1} de 3`;
+  $('#back').classList.toggle('hide', !step);
+  $('#next').classList.toggle('hide', step === 2);
+  $('#send').classList.toggle('hide', step !== 2);
+  $('#err').textContent = '';
+}
+$('#next').onclick = () => {
+  if (step === 0 && !v.op) return $('#err').textContent = 'Selecciona una opción';
+  if (step === 1 && (!v.carga || !v.inc)) return $('#err').textContent = 'Selecciona carga e incoterm';
+  step++;
+  show();
+};
+$('#back').onclick = () => { step--; show(); };
+($('#rfq') as HTMLFormElement).onsubmit = e => {
+  e.preventDefault();
+  const g = (n: string) => (document.getElementsByName(n)[0] as HTMLInputElement).value.trim();
+  const x = g('nombre').length < 2 ? 'Nombre requerido' : g('empresa').length < 2 ? 'Empresa requerida' : !/^\S+@\S+\.\S+$/.test(g('correo')) ? 'Correo inválido' : g('tel').replace(/\D/g, '').length < 10 ? 'Teléfono: mínimo 10 dígitos' : '';
+  if (x) return $('#err').textContent = x;
+  $('#rfq').classList.add('hide');
+  $('#ok').classList.remove('hide');
+};
+show();
+</script>

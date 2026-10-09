@@ -1,0 +1,7 @@
+---
+import { whyItems } from '../../data/content';
+import Icon from '../ui/Icon.astro';
+---
+<section class="py-14 bg-deep"><div class="max-w-6xl mx-auto px-4"><p class="kick">Nuestra garantía</p><h2 class="h mt-2 text-3xl md:text-4xl">¿Por qué con nosotros?</h2><div class="mt-8 grid md:grid-cols-2 gap-4">
+{whyItems.map((w, i) => <div class="box flex gap-4"><div class="shrink-0 text-center"><span class="h text-3xl text-brand block">0{i + 1}</span><span class="text-orange-300 mt-2 inline-block"><Icon name={w.icon}/></span></div><div><h3 class="font-bold text-white">{w.title}</h3><p class="text-sm mt-1">{w.desc}</p></div></div>)}
+</div></div></section>

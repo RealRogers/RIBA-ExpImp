@@ -1,0 +1,7 @@
+---
+import { steps } from '../../data/content';
+---
+<section id="proceso" class="py-14"><div class="max-w-6xl mx-auto px-4"><p class="kick">Método</p><h2 class="h mt-2 text-3xl md:text-4xl">Cuatro fases, trazabilidad total</h2>
+<ol class="relative mt-12 grid md:grid-cols-4 gap-8"><div class="md:hidden absolute left-5 top-5 bottom-10 w-0.5 bg-gradient-to-b from-brand to-orange-300/20"></div><div class="hidden md:block absolute left-[12.5%] right-[12.5%] top-5 h-0.5 bg-gradient-to-r from-brand to-orange-300/30"></div>
+{steps.map((s, i) => <li class="relative pl-14 md:pl-0"><span class="absolute md:relative left-0 top-0 z-10 grid place-items-center w-10 h-10 rounded-full bg-brand text-white font-bold ring-4 ring-ink">{i + 1}</span><h3 class="font-bold text-white mt-3">{s.title}</h3><p class="text-sm mt-1">{s.desc}</p></li>)}
+</ol></div></section>
