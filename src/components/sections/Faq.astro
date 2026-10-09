@@ -2,11 +2,15 @@
 import { faqs } from '../../data/content';
 ---
 <section class="py-14 bg-mist"><div class="max-w-3xl mx-auto px-4"><p class="kick text-amber-700">Dudas</p><h2 class="h mt-2 text-3xl md:text-4xl text-ink">Preguntas frecuentes</h2><div id="faq" class="mt-8 space-y-3">
-{faqs.map((f, i) => <div class="box p-0!"><button class="w-full flex justify-between gap-3 p-4 text-left font-semibold text-ink">{f.q}<span class="text-slate-400">▾</span></button><p class:list={['px-4 pb-4 text-slate-600', { hide: i > 0 }]}>{f.a}</p></div>)}
+{faqs.map((f, i) => <div class="box p-0!"><button type="button" class="w-full flex justify-between gap-3 p-4 text-left font-semibold text-ink" aria-expanded={i === 0 ? 'true' : 'false'} aria-controls={`faq-a-${i}`}>{f.q}<span class="text-slate-400" aria-hidden="true">▾</span></button><p id={`faq-a-${i}`} class:list={['px-4 pb-4 text-slate-600', { hide: i > 0 }]}>{f.a}</p></div>)}
 </div></div></section>
 
 <script>
 document.querySelectorAll('#faq button').forEach(b =>
-  (b as HTMLElement).onclick = () => b.nextElementSibling!.classList.toggle('hide')
+  (b as HTMLElement).onclick = () => {
+    const p = b.nextElementSibling!;
+    const open = p.classList.toggle('hide');
+    b.setAttribute('aria-expanded', String(!open));
+  }
 );
 </script>

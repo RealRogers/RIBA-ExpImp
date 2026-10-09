@@ -14,7 +14,7 @@ import { machines, machineCategories } from '../data/content';
 <p class="mt-4 text-lg text-slate-600 max-w-2xl">{machines.length} equipos de fábrica verificados en China, adaptados al voltaje (220V/440V · 60Hz) y a las normativas mexicanas. Todos con inspección pre-embarque.</p>
 <p class="mt-1 text-xs text-slate-500">*Tiempos estimados en modalidad Puerta a Puerta (DDP).</p>
 <div id="mfilters" class="mt-6 flex flex-wrap gap-2">
-{machineCategories.map((c, i) => <button type="button" class:list={['chip', { on: i === 0 }]} data-cat={c.id}>{c.label}</button>)}
+{machineCategories.map((c, i) => <button type="button" class:list={['chip', { on: i === 0 }]} data-cat={c.id} aria-pressed={i === 0 ? 'true' : 'false'}>{c.label}</button>)}
 </div>
 <div id="mgrid" class="mt-8 grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
 {machines.map(m => <article data-cat={m.category} class="box p-0! overflow-hidden flex flex-col">
@@ -37,8 +37,9 @@ const chips = [...document.querySelectorAll('#mfilters .chip')] as HTMLElement[]
 const cards = [...document.querySelectorAll('#mgrid [data-cat]')] as HTMLElement[];
 const empty = document.getElementById('mempty')!;
 chips.forEach(c => c.onclick = () => {
-  chips.forEach(x => x.classList.remove('on'));
+  chips.forEach(x => { x.classList.remove('on'); x.setAttribute('aria-pressed', 'false'); });
   c.classList.add('on');
+  c.setAttribute('aria-pressed', 'true');
   const k = c.dataset.cat;
   let visible = 0;
   cards.forEach(card => {

@@ -12,8 +12,7 @@ RIBA-Importaciones/
 │   └── images/
 │       ├── machinery/               # Vacío (.gitkeep) — colocar .webp del catálogo aquí
 │       ├── services/                # Fotos de servicios (importacion/exportacion/maquinaria .webp)
-│       ├── hero-port.webp           # ⚠️ Pendiente: foto del hero (con fallback navy si falta)
-│       └── wechat-qr.png            # ⚠️ Pendiente: QR real de WeChat (no existe aún)
+│       └── hero-port.webp           # ⚠️ Pendiente: foto del hero (con fallback navy si falta)
 │
 ├── src/
 │   ├── pages/                       # Modelo híbrido: home resumen + páginas de profundidad
@@ -24,7 +23,7 @@ RIBA-Importaciones/
 │   │   └── cotizar.astro            # RFQ dedicado + contacto directo + FAQ
 │   │
 │   ├── layouts/
-│   │   └── Layout.astro             # <html> base: SEO/OG, fuentes, favicon + modales y botones flotantes globales
+│   │   └── Layout.astro             # <html> base: SEO/OG, fuentes, favicon + modal crédito y botón flotante globales
 │   │
 │   ├── styles/
 │   │   └── global.css               # @import "tailwindcss" + @theme (tokens) + clases custom
@@ -50,9 +49,8 @@ RIBA-Importaciones/
 │       │
 │       └── ui/                      # Elementos reutilizables / overlays
 │           ├── Icon.astro           # Mapa de íconos SVG (check, shield, clip, file, truck, gear, whatsapp, ship, plane)
-│           ├── FloatingButtons.astro# Botones flotantes WeChat + WhatsApp (fixed bottom-right)
-│           ├── CreditModal.astro    # Modal "Sitio por RogersX"
-│           └── WechatModal.astro    # Modal con <img src="/images/wechat-qr.png">
+│           ├── FloatingButtons.astro# Botón flotante WhatsApp (fixed bottom-right)
+│           └── CreditModal.astro    # Modal "Sitio por RogersX"
 │
 ├── astro.config.mjs                 # Astro + plugin @tailwindcss/vite
 ├── package.json                     # Scripts: dev / build / preview
@@ -84,7 +82,7 @@ Todo el contenido se renderiza **en build-time**. El JavaScript en el cliente so
 | Export | Tipo | Usado por |
 |---|---|---|
 | `whatsappUrl` | `string` | Header, FloatingButtons, /cotizar — ⚠️ `'#'` con TODO |
-| `wechatId`, `phone` | `string` | Footer, WechatModal, /cotizar |
+| `wechatId`, `phone` | `string` | Footer, /cotizar |
 | `machines` | `Machine[]` (15, con `category` + `specs`) | Catalog (home, `limit=4`) / maquinaria.astro (completo + filtros) |
 | `machineCategories` | filtros | /maquinaria (chips) |
 | `importSteps`, `exportPoints` | `DetailStep[]` | /importacion, /exportacion |
@@ -105,9 +103,9 @@ Todo el contenido se renderiza **en build-time**. El JavaScript en el cliente so
 |---|---|
 | Menú móvil (toggle ☰/✕ + `aria-expanded` + cierre con `Escape`) | `Header.astro` |
 | Acordeón FAQ | `Faq.astro` |
-| RFQ: chips on/off, pasos 1→3, validación, sync a inputs hidden | `RfqForm.astro` |
+| RFQ: chips on/off, pasos 1→3, validación, sync a inputs hidden | `RfqForm.astro` → detalle en `RfqForm.md` |
 | Filtros de catálogo por categoría | `maquinaria.astro` |
-| Modales: abrir, cerrar con ✕ / click-outside / `Escape` | `Layout.astro` (global) |
+| Modal de crédito: abrir, cerrar con ✕ / click-outside / `Escape` | `Layout.astro` (global) |
 | Animación ruta marítima | SVG nativo (`animateMotion`), sin JS |
 
 ## Convenciones
@@ -126,7 +124,7 @@ Todo el contenido se renderiza **en build-time**. El JavaScript en el cliente so
 
 - **RFQ → Web3Forms**: `RfqForm.astro` ya tiene `action`, `method="POST"`, `access_key` (hidden, vacío) y campos hidden `operacion`/`tipo_carga`/`incoterm`. Solo falta la key.
 - **WhatsApp**: cambiar `whatsappUrl` en `content.ts` a `https://wa.me/<num>?text=<msg>`.
-- **QR WeChat**: colocar `public/images/wechat-qr.png`.
+- **QR WeChat**: el modal fue retirado; `wechatId` sigue como texto informativo en Footer y /cotizar.
 
 ## Dependencias
 
