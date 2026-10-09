@@ -6,45 +6,18 @@ import Hero from '../components/sections/Hero.astro';
 import Services from '../components/sections/Services.astro';
 import Catalog from '../components/sections/Catalog.astro';
 import RouteBand from '../components/sections/RouteBand.astro';
-import WhyUs from '../components/sections/WhyUs.astro';
-import Process from '../components/sections/Process.astro';
-import RfqForm from '../components/sections/RfqForm.astro';
 import Carriers from '../components/sections/Carriers.astro';
-import Faq from '../components/sections/Faq.astro';
-import FloatingButtons from '../components/ui/FloatingButtons.astro';
-import CreditModal from '../components/ui/CreditModal.astro';
-import WechatModal from '../components/ui/WechatModal.astro';
+import RfqForm from '../components/sections/RfqForm.astro';
 ---
 <Layout>
 <Header/>
 <main>
 <Hero/>
 <Services/>
-<Catalog/>
+<Catalog limit={4} fullHref="/maquinaria"/>
 <RouteBand/>
-<WhyUs/>
-<Process/>
-<RfqForm/>
 <Carriers/>
-<Faq/>
+<RfqForm/>
 </main>
 <Footer/>
-<CreditModal/>
-<WechatModal/>
-<FloatingButtons/>
 </Layout>
-
-<script>
-const open = (id: string) => document.querySelector(id)!.classList.remove('hide');
-document.querySelectorAll('#credit,#wcModal').forEach(m => {
-  (m as HTMLElement).onclick = e => {
-    const t = e.target as HTMLElement;
-    if (t === m || t.classList.contains('x')) m.classList.add('hide');
-  };
-});
-document.getElementById('creditBtn')!.onclick = () => open('#credit');
-document.getElementById('wcBtn')!.onclick = () => open('#wcModal');
-addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.querySelectorAll('#credit,#wcModal').forEach(m => m.classList.add('hide'));
-});
-</script>

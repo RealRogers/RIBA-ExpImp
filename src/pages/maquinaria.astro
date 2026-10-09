@@ -1,0 +1,51 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Icon from '../components/ui/Icon.astro';
+import { machines, machineCategories } from '../data/content';
+---
+<Layout title="Catálogo de Maquinaria Industrial | RIBA" description="Catálogo de maquinaria industrial de China: plásticos, metalmecánica y empaque. Equipos adaptados a 220V/440V y normativas mexicanas (NOM).">
+<Header/>
+<main>
+<section class="py-14 md:py-20 bg-white"><div class="max-w-6xl mx-auto px-4">
+<p class="kick text-amber-700">Catálogo</p>
+<h1 class="h mt-2 text-4xl md:text-5xl text-ink">Maquinaria Industrial</h1>
+<p class="mt-4 text-lg text-slate-600 max-w-2xl">{machines.length} equipos de fábrica verificados en China, adaptados al voltaje (220V/440V · 60Hz) y a las normativas mexicanas. Todos con inspección pre-embarque.</p>
+<p class="mt-1 text-xs text-slate-500">*Tiempos estimados en modalidad Puerta a Puerta (DDP).</p>
+<div id="mfilters" class="mt-6 flex flex-wrap gap-2">
+{machineCategories.map((c, i) => <button type="button" class:list={['chip', { on: i === 0 }]} data-cat={c.id}>{c.label}</button>)}
+</div>
+<div id="mgrid" class="mt-8 grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-5">
+{machines.map(m => <article data-cat={m.category} class="box p-0! overflow-hidden flex flex-col">
+<div class="relative aspect-[3/2] overflow-hidden"><div class="absolute inset-0 grid place-items-center bg-[radial-gradient(circle_at_30%_20%,#123C63,#0B2D4A)] text-slate-500"><Icon name="gear" class="w-16 h-16"/></div><img src={m.image} alt={m.name} loading="lazy" class="relative w-full h-full object-cover" onerror="this.remove()"/></div>
+<div class="p-3 sm:p-4 flex flex-col gap-2.5 flex-1">
+<h2 class="h text-base sm:text-lg leading-tight text-ink">{m.name}</h2>
+<div class="flex flex-wrap gap-1.5"><span class="text-xs font-semibold bg-amber-500/15 text-amber-700 rounded-full px-2 py-1">⚡ {m.voltage}</span><span class="text-xs font-semibold bg-ink/5 text-ink rounded-full px-2 py-1">Tránsito: {m.transit}</span></div>
+<ul class="text-xs text-slate-600 space-y-1.5">{m.specs.map(s => <li class="flex gap-2"><span class="text-ink shrink-0"><Icon name="check" class="w-3.5 h-3.5"/></span>{s}</li>)}</ul>
+<a href="/cotizar" class="btn ghostl text-xs sm:text-sm px-2! mt-auto text-center">Solicitar Ficha Técnica</a>
+</div></article>)}
+</div>
+<p id="mempty" class="hide mt-8 text-center text-slate-600">Sin equipos en esta categoría por ahora — escríbanos por <a href="/cotizar" class="underline font-semibold">cotización</a> y lo conseguimos.</p>
+</div></section>
+</main>
+<Footer/>
+</Layout>
+
+<script>
+const chips = [...document.querySelectorAll('#mfilters .chip')] as HTMLElement[];
+const cards = [...document.querySelectorAll('#mgrid [data-cat]')] as HTMLElement[];
+const empty = document.getElementById('mempty')!;
+chips.forEach(c => c.onclick = () => {
+  chips.forEach(x => x.classList.remove('on'));
+  c.classList.add('on');
+  const k = c.dataset.cat;
+  let visible = 0;
+  cards.forEach(card => {
+    const show = k === 'todas' || card.dataset.cat === k;
+    card.classList.toggle('hide', !show);
+    if (show) visible++;
+  });
+  empty.classList.toggle('hide', visible > 0);
+});
+</script>

@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import RfqForm from '../components/sections/RfqForm.astro';
+import Faq from '../components/sections/Faq.astro';
+import { whatsappUrl, phone, wechatId } from '../data/content';
+
+const waExt = whatsappUrl.startsWith('https://') ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+---
+<Layout title="Cotización Rápida | RIBA" description="Cotice su importación o exportación China ⇄ México en menos de 24 horas hábiles. Formulario RFQ y contacto directo por WhatsApp o WeChat.">
+<Header/>
+<main>
+<section class="py-12 md:py-16 bg-white"><div class="max-w-6xl mx-auto px-4 text-center">
+<p class="kick text-amber-700">Contacto</p>
+<h1 class="h mt-2 text-4xl md:text-5xl text-ink">Cuéntenos su operación</h1>
+<p class="mt-4 text-lg text-slate-600 max-w-xl mx-auto">Complete el cotizador en 3 pasos o escríbanos directamente. Respuesta en menos de 24 horas hábiles.</p>
+<div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+<a href={whatsappUrl} {...waExt} class="btn border border-green-500 text-green-600">WhatsApp: {phone}</a>
+<span class="btn ghostl pointer-events-none">WeChat: {wechatId}</span>
+</div>
+</div></section>
+<RfqForm/>
+<Faq/>
+</main>
+<Footer/>
+</Layout>

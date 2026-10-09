@@ -16,8 +16,9 @@ html {
   font-family: Inter, system-ui, sans-serif;
 }
 
-section[id] {
-  scroll-margin-top: 7rem;
+section[id],
+article[id] {
+  scroll-margin-top: 5rem;
 }
 
 body {
@@ -160,6 +161,14 @@ body {
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+@media (hover: none) {
+  .box:hover {
+    transform: none;
+    border-color: #E2E8F0;
+    box-shadow: 0 2px 8px rgba(11, 45, 74, .06);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
