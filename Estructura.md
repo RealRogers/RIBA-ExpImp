@@ -48,8 +48,8 @@ RIBA-Importaciones/
 │       │   └── Faq.astro            # Acordeón de preguntas frecuentes
 │       │
 │       └── ui/                      # Elementos reutilizables / overlays
-│           ├── Icon.astro           # Mapa de íconos SVG (check, shield, clip, file, truck, gear, whatsapp, ship, plane)
-│           ├── FloatingButtons.astro# Botón flotante WhatsApp (fixed bottom-right)
+│           ├── Icon.astro           # Mapa de íconos SVG (check, shield, clip, file, truck, gear, whatsapp, ship, plane, up)
+│           ├── FloatingButtons.astro# FABs fixed bottom-right: volver arriba (tras scroll) + WhatsApp
 │           └── CreditModal.astro    # Modal "Sitio por RogersX"
 │
 ├── astro.config.mjs                 # Astro + plugin @tailwindcss/vite
