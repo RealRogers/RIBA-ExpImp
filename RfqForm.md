@@ -34,7 +34,7 @@ Las opciones vienen de `rfqOptions` en `src/data/content.ts`:
 |---|---|---|
 | 1 — Tipo de operación | `op` | Importación, Exportación |
 | 2 — Tipo de carga + Incoterm | `carga`, `inc` | Maquinaria / Materia Prima o Productos / Carga General · FOB / EXW / CIF / DDP / No lo sé |
-| 3 — Datos de contacto | inputs nativos | `nombre`, `empresa`, `correo`, `tel` |
+| 3 — Datos de contacto | inputs `required` + `aria-label` | `nombre` (`autocomplete="name"`), `empresa` (`organization`), `correo` (`type="email"`), `tel` (`type="tel"`, filtrado a dígitos + `+` inicial) |
 
 ## Modelo de estado y flujo
 
@@ -47,13 +47,13 @@ El script (inline en `RfqForm.astro`, sin dependencias) mantiene:
 Flujo:
 
 ```
-chip click ──► .on + v[k] + input hidden (sync por mapa H)
+chip click ──► .on + aria-pressed + v[k] + input hidden (sync por mapa H)
 #next      ──► valida paso actual ──► step++ ──► show()
 #back      ──► step-- ──► show()
 #send      ──► onsubmit: preventDefault → valida contacto → #ok (sin POST real)
 ```
 
-1. **Click en chip**: quita `.on` a sus hermanos, activa `.on` en él, guarda el texto en `v[...]` y lo escribe en el input hidden correspondiente (para que viaje en el POST). Una vez elegido un chip **no se puede deseleccionar**, solo cambiar a otro del mismo grupo.
+1. **Click en chip**: quita `.on` a sus hermanos, activa `.on` en él, sincroniza `aria-pressed` (true/false), guarda el texto en `v[...]` y lo escribe en el input hidden correspondiente (para que viaje en el POST). Una vez elegido un chip **no se puede deseleccionar**, solo cambiar a otro del mismo grupo.
 2. **`show()`**: alterna `hide` en los 3 pasos, actualiza `#stepLbl`, muestra `#back` solo desde el paso 2, `#next` en pasos 1–2 y `#send` solo en el paso 3; limpia `#err`.
 3. **`#next`**: valida el paso actual y avanza.
 4. **`#back`**: retrocede un paso (se oculta en el paso 1, así que nunca baja de 0).
@@ -82,7 +82,7 @@ Cuando se habilite el POST, el `FormData` incluirá:
 | Submit | `correo` con formato `x@y.z` | "Por favor, ingrese un correo válido." |
 | Submit | `tel` ≥ 10 dígitos (solo números) | "Teléfono: mínimo 10 dígitos." |
 
-El form lleva `novalidate`, así que **toda** la validación es manual en JS (los inputs usan `type="email"`/`type="tel"` solo para el teclado móvil y autofill, no para validación nativa).
+El form lleva `novalidate`, así que **toda** la validación es manual en JS. Los `required` no disparan validación nativa (el `novalidate` la suprime) pero sí lo anuncian a lectores de pantalla y habilitan `checkValidity()`/`:invalid`.
 
 ## Estado real del envío (importante)
 
@@ -104,8 +104,9 @@ Es decir: la pantalla de éxito aparece **sin que se haya hecho ningún request*
 
 ## Limitaciones conocidas
 
-- Los chips, una vez elegidos, **no se pueden deseleccionar** — solo cambiar de opción dentro del grupo.
-- Los inputs del paso 3 no tienen `required` nativo; la validación depende 100% del JS.
+- Los chips, una vez elegidos, **no se pueden deseleccionar** — solo cambiar de opción dentro del grupo. Patrón "radio" implementado como botones con `aria-pressed`; si se quisiera semántica de radio nativa habría que cambiarlos a `role="radio"` + `aria-checked` o a `<input type="radio">` reales.
+- Los inputs usan `aria-label` (no hay `<label>` visible por diseño).
+- `tel` filtra el input en vivo: solo dígitos y `+` inicial (`maxlength="17"` cubre E.164). `type="tel"` solo da el teclado numérico en móvil — en desktop no bloquea texto por sí mismo.
 - El `id="cotizar"` de la sección es un ancla residual: el nav ya enlaza a la página `/cotizar`, no al ancla. Sirve para deep-links tipo `/#cotizar`.
 - El header/footer del `.box` usa `hover:transform-none!` para evitar el lift de `.box` en el formulario.
 
