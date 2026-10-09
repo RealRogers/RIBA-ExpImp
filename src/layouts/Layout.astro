@@ -2,7 +2,6 @@
 import '../styles/global.css';
 import FloatingButtons from '../components/ui/FloatingButtons.astro';
 import CreditModal from '../components/ui/CreditModal.astro';
-import WechatModal from '../components/ui/WechatModal.astro';
 
 interface Props {
   title?: string;
@@ -30,20 +29,16 @@ const {
 <body>
 <slot/>
 <CreditModal/>
-<WechatModal/>
 <FloatingButtons/>
 <script>
-const open = (id: string) => document.querySelector(id)!.classList.remove('hide');
-document.querySelectorAll('#credit,#wcModal').forEach(m => {
-  (m as HTMLElement).onclick = e => {
-    const t = e.target as HTMLElement;
-    if (t === m || t.classList.contains('x')) m.classList.add('hide');
-  };
-});
-document.getElementById('creditBtn')!.onclick = () => open('#credit');
-document.getElementById('wcBtn')!.onclick = () => open('#wcModal');
+const credit = document.getElementById('credit')!;
+credit.onclick = e => {
+  const t = e.target as HTMLElement;
+  if (t === credit || t.classList.contains('x')) credit.classList.add('hide');
+};
+document.getElementById('creditBtn')!.onclick = () => credit.classList.remove('hide');
 addEventListener('keydown', e => {
-  if (e.key === 'Escape') document.querySelectorAll('#credit,#wcModal').forEach(m => m.classList.add('hide'));
+  if (e.key === 'Escape') credit.classList.add('hide');
 });
 </script>
 </body>

@@ -5,6 +5,4 @@ import Icon from './Icon.astro';
 // Mientras whatsappUrl sea el placeholder '#', no abrir pestaña nueva.
 const waExt = whatsappUrl.startsWith('https://') ? { target: '_blank', rel: 'noopener noreferrer' } : {};
 ---
-<div class="fixed right-4 bottom-4 z-40 flex flex-col gap-3">
-<button id="wcBtn" type="button" aria-label="Contactar por WeChat" class="w-12 h-12 rounded-full bg-emerald-600 text-white shadow-lg text-lg hover:scale-110 transition self-end">微</button>
-<a href={whatsappUrl} {...waExt} aria-label="Contactar por WhatsApp" class="w-14 h-14 rounded-full bg-green-500 text-white shadow-lg grid place-items-center hover:scale-110 transition"><Icon name="whatsapp"/></a></div>
+<a href={whatsappUrl} {...waExt} aria-label="Contactar por WhatsApp" class="fixed right-4 bottom-4 z-40 w-14 h-14 rounded-full bg-green-500 text-white shadow-lg grid place-items-center hover:scale-110 transition"><Icon name="whatsapp"/></a>

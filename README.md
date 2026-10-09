@@ -31,10 +31,10 @@ Dirección de arte: **"Corporate Editorial & Naval Trust"** — editorial claro 
 │   │   ├── layout/          # Header, Footer
 │   │   ├── sections/        # Hero, Services, Catalog, RouteBand, WhyUs,
 │   │   │                    #   Process, RfqForm, Carriers, Faq
-│   │   └── ui/              # Icon, FloatingButtons, CreditModal, WechatModal
+│   │   └── ui/              # Icon, FloatingButtons, CreditModal
 │   ├── data/content.ts      # Todos los datos del sitio (interfaces TS)
 │   ├── layouts/Layout.astro # HTML base, fuentes, meta tags
-│   ├── pages/index.astro    # Ensamblaje de la página
+│   ├── pages/               # index + importacion + exportacion + maquinaria + cotizar
 │   └── styles/global.css    # Tailwind + @theme + clases custom
 ├── astro.config.mjs
 ├── skills-lock.json         # Lockfile del instalador de skills
@@ -72,7 +72,6 @@ Todo el contenido vive en **`src/data/content.ts`** (type-safe):
 
 - [ ] **WhatsApp**: `whatsappUrl` en `content.ts` es `#` (falta número real)
 - [ ] **RFQ**: el form ya tiene `action="https://api.web3forms.com/submit"`; falta pegar el `access_key` (input hidden en `RfqForm.astro`) para activar el envío real
-- [ ] **QR de WeChat**: colocar imagen real en `public/images/wechat-qr.png`
 - [ ] Imágenes del catálogo en `public/images/machinery/*.webp` (hoy caen al placeholder de engranaje vía `onerror`)
 - [ ] Foto del hero en `public/images/hero-port.webp` y servicios en `public/images/services/*.webp` (hoy: fallback degradado navy)
 - [ ] Métricas reales: `stats` en `content.ts` tiene placeholders (+120 clientes, +10 años)
